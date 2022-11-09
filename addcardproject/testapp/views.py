@@ -23,18 +23,19 @@ def add_card(request):
         fm = CardRegistration()
     stud = Card.objects.all()
     return render(request, 'add.html', {'form': fm})
+
+
 def update_data(request, id):
- if request.method == 'POST':
-  pi = Card.objects.get(pk=id)
-  fm = CardRegistration(request.POST, instance=pi)
-  if fm.is_valid():
-   fm.save()
-   return redirect('/')
- else:
-  pi = Card.objects.get(pk=id)
-  fm = CardRegistration(request.POST,instance=pi)
- return render(request, 'update.html', {'form':fm})
- 
+    if request.method == 'POST':
+        pi = Card.objects.get(pk=id)
+        fm = CardRegistration(request.POST, instance=pi)
+        if fm.is_valid():
+            fm.save()
+            return redirect('/')
+    else:
+        pi = Card.objects.get(pk=id)
+        fm = CardRegistration(request.POST, instance=pi)
+    return render(request, 'update.html', {'form': fm})
 
 
 def home(request):
